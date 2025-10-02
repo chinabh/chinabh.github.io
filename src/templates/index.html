@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO Meta Tags -->
+    <title>{{META_TITLE}}</title>
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <meta name="keywords" content="{{META_KEYWORDS}}">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{META_TITLE}}">
+    <meta property="og:description" content="{{META_DESCRIPTION}}">
+    <meta property="og:image" content="{{OG_IMAGE}}">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/assets/styles.css">
+
+    <!-- Fonts - Self-hosted for China compatibility -->
+    <style>
+        /* Critical CSS for fast first paint */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Sans CJI SC"; line-height: 1.6; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <select id="language-selector" onchange="switchLanguage(this.value)">
+            {{LANGUAGE_OPTIONS}}
+        </select>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero" style="background-image: url('{{HERO_BG_IMAGE}}');">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">{{HERO_TITLE}}</h1>
+            <p class="hero-subtitle">{{HERO_SUBTITLE}}</p>
+
+            <div class="hero-cta">
+                <button class="btn btn-primary" onclick="scrollToSection('contact')">{{HERO_CTA_PRIMARY}}</button>
+                <button class="btn btn-secondary" onclick="scrollToSection('process')">{{HERO_CTA_SECONDARY}}</button>
+            </div>
+
+            <div class="trust-badges">
+                {{TRUST_BADGES}}
+            </div>
+
+            {{CANTON_BANNER}}
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <h2 class="section-title">{{ABOUT_TITLE}}</h2>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>{{MISSION_TITLE}}</h3>
+                    <p>{{MISSION_CONTENT}}</p>
+                </div>
+
+                <div class="about-card">
+                    <h3>{{VISION_TITLE}}</h3>
+                    <p>{{VISION_CONTENT}}</p>
+                </div>
+            </div>
+
+            {{GUANXI_SECTION}}
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services section section-alt">
+        <div class="container">
+            <h2 class="section-title">{{SERVICES_TITLE}}</h2>
+
+            <div class="services-grid">
+                {{SERVICES_ITEMS}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process section">
+        <div class="container">
+            <h2 class="section-title">{{PROCESS_TITLE}}</h2>
+
+            <div class="process-steps">
+                {{PROCESS_STEPS}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section section-alt">
+        <div class="container">
+            <h2 class="section-title">{{CONTACT_TITLE}}</h2>
+            <p class="section-subtitle">{{CONTACT_SUBTITLE}}</p>
+
+            <div class="contact-wrapper">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <form id="contact-form" class="contact-form" action="{{FORM_ACTION}}" method="{{FORM_METHOD}}" onsubmit="return handleFormSubmit(event)">
+                        {{FORM_FIELDS}}
+
+                        <!-- Hidden fields for tracking -->
+                        <input type="hidden" name="language" value="{{LANG}}">
+                        <input type="hidden" name="_subject" value="New Contact from China Business Hub ({{LANG_NAME}})">
+                        <input type="hidden" name="_page_url" id="_page_url">
+                        <input type="hidden" name="_user_agent" id="_user_agent">
+
+                        <!-- Honeypot for spam protection -->
+                        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+                        <button type="submit" class="btn btn-primary btn-block" id="submit-btn">
+                            {{FORM_SUBMIT_TEXT}}
+                        </button>
+                    </form>
+
+                    <!-- Success/Error Messages -->
+                    <div id="form-success" class="alert alert-success" style="display:none;">
+                        {{SUCCESS_MESSAGE}}
+                    </div>
+                    <div id="form-error" class="alert alert-error" style="display:none;">
+                        {{ERROR_MESSAGE}}
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <div class="contact-methods">
+                        {{CONTACT_METHODS}}
+                    </div>
+
+                    {{WECHAT_QR}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                {{FOOTER_LINKS}}
+            </div>
+            <div class="footer-copyright">
+                {{FOOTER_COPYRIGHT}}
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/{{WHATSAPP_NUMBER}}" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="white">
+            <path d="M20.1 0C9.1 0 0.2 8.9 0.2 19.9c0 3.5 0.9 6.9 2.6 9.9L0 40l10.5-2.8c2.9 1.6 6.2 2.4 9.6 2.4C31.1 39.7 40 30.8 40 19.9S31.1 0 20.1 0zm11.5 28.2c-0.5 1.4-2.9 2.6-4 2.7c-1.1 0.1-1 0.8-6.4-1.3c-6.5-2.6-10.7-9.3-11-9.7c-0.3-0.4-2.6-3.5-2.6-6.6s1.7-4.7 2.3-5.3c0.6-0.6 1.3-0.8 1.7-0.8s0.9 0 1.2 0c0.4 0 0.9-0.2 1.4 1.1s1.7 4.1 1.8 4.4c0.1 0.3 0.2 0.6 0 1c-0.2 0.4-0.3 0.6-0.6 0.9s-0.6 0.7-0.9 1.1c-0.3 0.3-0.6 0.7-0.3 1.3c0.4 0.7 1.6 2.6 3.5 4.2c2.4 2 4.4 2.7 5 2.9c0.6 0.3 0.9 0.2 1.3-0.1c0.3-0.4 1.4-1.6 1.8-2.1c0.4-0.6 0.7-0.5 1.3-0.3c0.5 0.2 3.3 1.6 3.9 1.9c0.6 0.3 0.9 0.4 1 0.6C32.6 25.4 32.1 26.8 31.6 28.2z"/>
+        </svg>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Set tracking fields
+        document.getElementById('_page_url').value = window.location.href;
+        document.getElementById('_user_agent').value = navigator.userAgent;
+
+        // Add UTM parameters if present
+        const urlParams = new URLSearchParams(window.location.search);
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(param => {
+            if (urlParams.has(param)) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = param;
+                input.value = urlParams.get(param);
+                document.getElementById('contact-form').appendChild(input);
+            }
+        });
+
+        // Smooth scroll
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Language switcher
+        function switchLanguage(lang) {
+            const currentPath = window.location.pathname;
+            let newPath = '/';
+
+            if (lang === 'zh') newPath = '/zh/';
+            else if (lang === 'en') newPath = '/en/';
+
+            window.location.href = newPath;
+        }
+
+        // Form validation and submission
+        function handleFormSubmit(event) {
+            const form = event.target;
+            const submitBtn = document.getElementById('submit-btn');
+            const successMsg = document.getElementById('form-success');
+            const errorMsg = document.getElementById('form-error');
+
+            // Clear previous messages
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+
+            // Validate required fields
+            let isValid = true;
+            const requiredFields = form.querySelectorAll('[required]');
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#dc2626';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#d1d5db';
+                }
+            });
+
+            if (!isValid) {
+                errorMsg.textContent = '{{ERROR_MESSAGE}}';
+                errorMsg.style.display = 'block';
+                return false;
+            }
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = '{{LOADING_TEXT}}';
+
+            // If using FormSubmit or similar, let form submit naturally
+            // Otherwise, handle with fetch API
+            return true; // Allow form submission
+        }
+
+        // Show success message after redirect (if using FormSubmit)
+        if (window.location.search.includes('submitted=true')) {
+            document.getElementById('form-success').style.display = 'block';
+            document.getElementById('contact-form').style.display = 'none';
+        }
+    </script>
+
+    <script src="/assets/form-handler.js"></script>
+</body>
+</html>

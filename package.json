@@ -1,0 +1,23 @@
+{
+  "name": "china-bh-static-site",
+  "version": "1.0.0",
+  "description": "Static landing page for China Business Hub (China deployment)",
+  "type": "module",
+  "scripts": {
+    "build": "node src/generator.js",
+    "preview": "npx http-server dist -p 8080 -o",
+    "dev": "npm run build && npm run preview",
+    "validate": "node scripts/validate-content.js",
+    "optimize-images": "node scripts/optimize-images.js"
+  },
+  "keywords": [
+    "static-site",
+    "china",
+    "landing-page"
+  ],
+  "author": "China Business Hub",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
