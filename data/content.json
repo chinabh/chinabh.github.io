@@ -4,15 +4,18 @@
 
   "meta": {
     "siteName": "China Business Hub",
-    "tagline": "Sua Ponte para o Mercado Brasileiro",
-    "description": "Conectando empresas chinesas estabelecidas com oportunidades no Brasil",
-    "keywords": "China, Brasil, B2B, importação, exportação, BRICS, Feira de Cantão",
+    "tagline": {
+      "zh": "您通往巴西市场的桥梁",
+      "en": "Your Bridge to the Brazilian Market"
+    },
+    "description": "Connecting established Chinese companies with opportunities in Brazil",
+    "keywords": "China, Brazil, B2B, import, export, BRICS, Canton Fair",
     "contact": {
       "email": "contato@chinabusinesshub.com",
       "phone": "+55 11 98765-4321",
       "whatsapp": "+5511987654321",
       "wechat": "ChinaBizHub",
-      "address": "São Paulo, Brasil"
+      "address": "São Paulo, Brazil"
     },
     "social": {
       "linkedin": "https://linkedin.com/company/chinabusinesshub",
@@ -22,43 +25,38 @@
 
   "hero": {
     "title": {
-      "pt": "Sua Ponte para o Mercado Brasileiro",
       "zh": "您通往巴西市场的桥梁",
       "en": "Your Bridge to the Brazilian Market"
     },
     "subtitle": {
-      "pt": "Conectando empresas chinesas estabelecidas com oportunidades infinitas no Brasil através de confiança, expertise e parcerias estratégicas.",
       "zh": "通过信任、专业知识和战略合作伙伴关系，将成熟的中国企业与巴西的无限机遇联系起来。",
       "en": "Connecting established Chinese companies with infinite opportunities in Brazil through trust, expertise, and strategic partnerships."
     },
     "cta_primary": {
-      "pt": "Agendar Reunião",
       "zh": "预约会议",
       "en": "Schedule Meeting"
     },
     "cta_secondary": {
-      "pt": "Nosso Processo",
       "zh": "我们的流程",
       "en": "Our Process"
     },
     "trust_badges": [
       {
-        "text": { "pt": "Parceiros BRICS", "zh": "金砖合作伙伴", "en": "BRICS Partners" },
+        "text": { "zh": "金砖合作伙伴", "en": "BRICS Partners" },
         "icon": "✓"
       },
       {
-        "text": { "pt": "Feira de Cantão", "zh": "广交会", "en": "Canton Fair" },
+        "text": { "zh": "广交会", "en": "Canton Fair" },
         "icon": "★"
       },
       {
-        "text": { "pt": "Especialistas B2B", "zh": "B2B专家", "en": "B2B Experts" },
+        "text": { "zh": "B2B专家", "en": "B2B Experts" },
         "icon": "◆"
       }
     ],
     "background_image": "/images/cbh_hero_banner.png",
     "show_canton_banner": false,
     "canton_banner_text": {
-      "pt": "🎯 Nos encontre na Feira de Cantão! Stand 15.2 H19-20",
       "zh": "🎯 广交会见！展位 15.2 H19-20",
       "en": "🎯 Meet us at Canton Fair! Booth 15.2 H19-20"
     }
@@ -66,22 +64,19 @@
 
   "about": {
     "section_title": {
-      "pt": "Sobre Nós",
       "zh": "关于我们",
       "en": "About Us"
     },
     "mission": {
-      "title": { "pt": "Nossa Missão", "zh": "我们的使命", "en": "Our Mission" },
+      "title": { "zh": "我们的使命", "en": "Our Mission" },
       "content": {
-        "pt": "Facilitar a entrada estratégica de empresas chinesas estabelecidas no mercado brasileiro, criando parcerias duradouras baseadas em confiança mútua e crescimento sustentável.",
         "zh": "促进成熟中国企业战略性进入巴西市场，建立基于互信和可持续增长的持久合作伙伴关系。",
         "en": "Facilitate the strategic entry of established Chinese companies into the Brazilian market, creating lasting partnerships based on mutual trust and sustainable growth."
       }
     },
     "vision": {
-      "title": { "pt": "Nossa Visão", "zh": "我们的愿景", "en": "Our Vision" },
+      "title": { "zh": "我们的愿景", "en": "Our Vision" },
       "content": {
-        "pt": "Ser a principal ponte entre China e Brasil, transformando diferenças culturais em oportunidades de negócio e construindo o futuro do comércio Sul-Sul.",
         "zh": "成为中国和巴西之间的主要桥梁，将文化差异转化为商业机会，共建南南贸易的未来。",
         "en": "To be the leading bridge between China and Brazil, transforming cultural differences into business opportunities and building the future of South-South trade."
       }
@@ -89,12 +84,10 @@
     "guanxi": {
       "enabled": true,
       "title": {
-        "pt": "Guanxi (关系) - Construindo Pontes",
         "zh": "关系 - 搭建桥梁",
         "en": "Guanxi (关系) - Building Bridges"
       },
       "content": {
-        "pt": "Entendemos profundamente o conceito de Guanxi. Não apenas fazemos negócios - construímos relacionamentos duradouros baseados em respeito mútuo, confiança e benefícios recíprocos.",
         "zh": "我们深刻理解关系的概念。我们不仅做生意——我们建立基于相互尊重、信任和互惠互利的持久关系。",
         "en": "We deeply understand the concept of Guanxi. We don't just do business - we build lasting relationships based on mutual respect, trust, and reciprocal benefits."
       }
@@ -103,42 +96,37 @@
 
   "services": {
     "section_title": {
-      "pt": "Nossos Serviços",
       "zh": "我们的服务",
       "en": "Our Services"
     },
     "items": [
       {
-        "title": { "pt": "Feira Virtual B2B", "zh": "B2B虚拟展会", "en": "B2B Virtual Fair" },
+        "title": { "zh": "B2B虚拟展会", "en": "B2B Virtual Fair" },
         "description": {
-          "pt": "Plataforma digital conectando fornecedores chineses verificados com compradores brasileiros qualificados.",
           "zh": "数字平台连接经过验证的中国供应商与合格的巴西买家。",
           "en": "Digital platform connecting verified Chinese suppliers with qualified Brazilian buyers."
         },
         "icon": "🌐"
       },
       {
-        "title": { "pt": "Eventos Presenciais", "zh": "线下活动", "en": "In-Person Events" },
+        "title": { "zh": "线下活动", "en": "In-Person Events" },
         "description": {
-          "pt": "Missões comerciais, rodadas de negócios e participação em feiras internacionais.",
           "zh": "商务访问、业务洽谈会和国际展会参与。",
           "en": "Trade missions, business rounds, and participation in international fairs."
         },
         "icon": "🤝"
       },
       {
-        "title": { "pt": "Due Diligence", "zh": "尽职调查", "en": "Due Diligence" },
+        "title": { "zh": "尽职调查", "en": "Due Diligence" },
         "description": {
-          "pt": "Verificação completa de empresas, produtos e certificações para garantir transações seguras.",
           "zh": "全面核实公司、产品和认证，确保交易安全。",
           "en": "Complete verification of companies, products, and certifications to ensure safe transactions."
         },
         "icon": "🛡️"
       },
       {
-        "title": { "pt": "Consultoria de Importação", "zh": "进口咨询", "en": "Import Consulting" },
+        "title": { "zh": "进口咨询", "en": "Import Consulting" },
         "description": {
-          "pt": "Assessoria completa em logística, documentação, compliance e regulamentação brasileira.",
           "zh": "物流、文件、合规和巴西法规的全面咨询。",
           "en": "Complete advisory on logistics, documentation, compliance, and Brazilian regulations."
         },
@@ -149,43 +137,38 @@
 
   "process": {
     "section_title": {
-      "pt": "Como Funciona",
       "zh": "如何运作",
       "en": "How It Works"
     },
     "steps": [
       {
         "number": "1",
-        "title": { "pt": "Reunião Inicial", "zh": "初次会议", "en": "Initial Meeting" },
+        "title": { "zh": "初次会议", "en": "Initial Meeting" },
         "description": {
-          "pt": "Entendemos suas necessidades, produtos e objetivos no mercado brasileiro.",
           "zh": "了解您在巴西市场的需求、产品和目标。",
           "en": "We understand your needs, products, and goals in the Brazilian market."
         }
       },
       {
         "number": "2",
-        "title": { "pt": "Análise de Mercado", "zh": "市场分析", "en": "Market Analysis" },
+        "title": { "zh": "市场分析", "en": "Market Analysis" },
         "description": {
-          "pt": "Pesquisa de demanda, concorrência e oportunidades específicas para seu setor.",
           "zh": "研究您行业的需求、竞争和具体机会。",
           "en": "Research on demand, competition, and specific opportunities for your sector."
         }
       },
       {
         "number": "3",
-        "title": { "pt": "Conexão com Parceiros", "zh": "合作伙伴匹配", "en": "Partner Matching" },
+        "title": { "zh": "合作伙伴匹配", "en": "Partner Matching" },
         "description": {
-          "pt": "Apresentamos compradores qualificados e distribuídores verificados em sua área.",
           "zh": "介绍合格买家和经过验证的分销商。",
           "en": "We introduce qualified buyers and verified distributors in your area."
         }
       },
       {
         "number": "4",
-        "title": { "pt": "Suporte Contínuo", "zh": "持续支持", "en": "Ongoing Support" },
+        "title": { "zh": "持续支持", "en": "Ongoing Support" },
         "description": {
-          "pt": "Acompanhamento pós-venda, logística e resolução de questões culturais/comerciais.",
           "zh": "售后跟进、物流和解决文化/商业问题。",
           "en": "Post-sale follow-up, logistics, and resolution of cultural/commercial issues."
         }
@@ -195,27 +178,22 @@
 
   "contact": {
     "section_title": {
-      "pt": "Entre em Contato",
       "zh": "联系我们",
       "en": "Get in Touch"
     },
     "subtitle": {
-      "pt": "Preencha o formulário abaixo ou entre em contato diretamente via WeChat/WhatsApp",
       "zh": "填写下面的表格或通过微信/WhatsApp直接联系",
       "en": "Fill out the form below or contact us directly via WeChat/WhatsApp"
     },
     "form_submit_button": {
-      "pt": "Enviar Mensagem",
       "zh": "发送信息",
       "en": "Send Message"
     },
     "success_message": {
-      "pt": "✅ Mensagem enviada com sucesso! Responderemos em até 24 horas.",
       "zh": "✅ 消息发送成功！我们将在24小时内回复。",
       "en": "✅ Message sent successfully! We'll respond within 24 hours."
     },
     "error_message": {
-      "pt": "❌ Erro ao enviar. Por favor, tente via WhatsApp ou WeChat.",
       "zh": "❌ 发送错误。请通过WhatsApp或微信联系。",
       "en": "❌ Error sending. Please try via WhatsApp or WeChat."
     }
@@ -223,23 +201,21 @@
 
   "footer": {
     "copyright": {
-      "pt": "© 2025 China Business Hub. Todos os direitos reservados.",
       "zh": "© 2025 China Business Hub. 保留所有权利。",
       "en": "© 2025 China Business Hub. All rights reserved."
     },
     "links": [
-      { "label": { "pt": "Sobre", "zh": "关于", "en": "About" }, "url": "#about" },
-      { "label": { "pt": "Serviços", "zh": "服务", "en": "Services" }, "url": "#services" },
-      { "label": { "pt": "Processo", "zh": "流程", "en": "Process" }, "url": "#process" },
-      { "label": { "pt": "Contato", "zh": "联系", "en": "Contact" }, "url": "#contact" }
+      { "label": { "zh": "关于", "en": "About" }, "url": "#about" },
+      { "label": { "zh": "服务", "en": "Services" }, "url": "#services" },
+      { "label": { "zh": "流程", "en": "Process" }, "url": "#process" },
+      { "label": { "zh": "联系", "en": "Contact" }, "url": "#contact" }
     ]
   },
 
   "languages": {
-    "available": ["pt", "zh", "en"],
-    "default": "pt",
+    "available": ["en", "zh"],
+    "default": "en",
     "names": {
-      "pt": "Português",
       "zh": "中文",
       "en": "English"
     }

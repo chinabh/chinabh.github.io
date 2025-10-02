@@ -74,6 +74,23 @@ const template = fs.readFileSync(
     'utf-8'
 );
 
+// ============================================
+// ENVIRONMENT VARIABLES
+// ============================================
+
+// Override form action with environment variable if set
+if (process.env.DEFAULT_RECEPTION_EMAIL) {
+    const formServiceType = process.env.FORM_SERVICE_TYPE || 'formsubmit';
+
+    if (formServiceType === 'formsubmit') {
+        formConfig.submission.action = `https://formsubmit.co/${process.env.DEFAULT_RECEPTION_EMAIL}`;
+    } else if (formServiceType === 'custom') {
+        formConfig.submission.action = process.env.DEFAULT_RECEPTION_EMAIL;
+    }
+
+    console.log(`📧 Using form email from environment: ${formConfig.submission.action}`);
+}
+
 console.log('✅ Data loaded successfully');
 
 // ============================================
@@ -83,7 +100,7 @@ console.log('✅ Data loaded successfully');
 function getText(obj, lang) {
     if (typeof obj === 'string') return obj;
     if (typeof obj === 'object' && obj[lang]) return obj[lang];
-    return obj?.pt || obj?.en || obj?.zh || '';
+    return obj?.en || obj?.zh || '';
 }
 
 function generateLanguageOptions(currentLang) {

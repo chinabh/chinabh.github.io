@@ -39,12 +39,10 @@
       "name": "name",
       "type": "text",
       "label": {
-        "pt": "Nome / Nome da Empresa",
         "zh": "姓名 / 公司名称",
         "en": "Name / Company Name"
       },
       "placeholder": {
-        "pt": "Seu nome ou empresa",
         "zh": "您的姓名或公司",
         "en": "Your name or company"
       },
@@ -57,12 +55,10 @@
       "name": "email",
       "type": "email",
       "label": {
-        "pt": "Email",
         "zh": "电子邮件",
         "en": "Email"
       },
       "placeholder": {
-        "pt": "seu@email.com",
         "zh": "your@email.com",
         "en": "your@email.com"
       },
@@ -73,12 +69,10 @@
       "name": "phone",
       "type": "tel",
       "label": {
-        "pt": "Telefone / WhatsApp",
         "zh": "电话 / WhatsApp",
         "en": "Phone / WhatsApp"
       },
       "placeholder": {
-        "pt": "+55 11 98765-4321",
         "zh": "+86 138 0000 0000",
         "en": "+55 11 98765-4321"
       },
@@ -89,12 +83,10 @@
       "name": "wechat",
       "type": "text",
       "label": {
-        "pt": "WeChat ID (opcional)",
         "zh": "微信号（可选）",
         "en": "WeChat ID (optional)"
       },
       "placeholder": {
-        "pt": "Seu ID do WeChat",
         "zh": "您的微信号",
         "en": "Your WeChat ID"
       },
@@ -105,12 +97,10 @@
       "name": "company",
       "type": "text",
       "label": {
-        "pt": "Empresa",
         "zh": "公司",
         "en": "Company"
       },
       "placeholder": {
-        "pt": "Nome da sua empresa",
         "zh": "您的公司名称",
         "en": "Your company name"
       },
@@ -121,7 +111,6 @@
       "name": "business_type",
       "type": "select",
       "label": {
-        "pt": "Tipo de Negócio",
         "zh": "业务类型",
         "en": "Business Type"
       },
@@ -130,7 +119,6 @@
         {
           "value": "manufacturer",
           "label": {
-            "pt": "Fabricante",
             "zh": "制造商",
             "en": "Manufacturer"
           }
@@ -138,7 +126,6 @@
         {
           "value": "trader",
           "label": {
-            "pt": "Trading Company",
             "zh": "贸易公司",
             "en": "Trading Company"
           }
@@ -146,7 +133,6 @@
         {
           "value": "distributor",
           "label": {
-            "pt": "Distribuidor",
             "zh": "分销商",
             "en": "Distributor"
           }
@@ -154,7 +140,6 @@
         {
           "value": "buyer",
           "label": {
-            "pt": "Comprador",
             "zh": "采购商",
             "en": "Buyer"
           }
@@ -162,7 +147,6 @@
         {
           "value": "other",
           "label": {
-            "pt": "Outro",
             "zh": "其他",
             "en": "Other"
           }
@@ -173,12 +157,10 @@
       "name": "products",
       "type": "textarea",
       "label": {
-        "pt": "Produtos de Interesse",
         "zh": "感兴趣的产品",
         "en": "Products of Interest"
       },
       "placeholder": {
-        "pt": "Quais produtos você gostaria de importar/exportar?",
         "zh": "您想进口/出口哪些产品？",
         "en": "Which products would you like to import/export?"
       },
@@ -190,12 +172,10 @@
       "name": "message",
       "type": "textarea",
       "label": {
-        "pt": "Mensagem",
         "zh": "留言",
         "en": "Message"
       },
       "placeholder": {
-        "pt": "Como podemos ajudar?",
         "zh": "我们如何帮助您？",
         "en": "How can we help you?"
       },
@@ -208,7 +188,7 @@
     {
       "name": "language",
       "type": "hidden",
-      "value": "pt",
+      "value": "en",
       "_comment": "Automatically set based on page language"
     },
     {
@@ -224,27 +204,22 @@
     "phone_regex": "^[+]?[0-9\\s-()]{8,20}$",
     "messages": {
       "required": {
-        "pt": "Este campo é obrigatório",
         "zh": "此字段为必填项",
         "en": "This field is required"
       },
       "invalid_email": {
-        "pt": "Email inválido",
         "zh": "电子邮件无效",
         "en": "Invalid email"
       },
       "invalid_phone": {
-        "pt": "Telefone inválido",
         "zh": "电话号码无效",
         "en": "Invalid phone"
       },
       "too_short": {
-        "pt": "Texto muito curto",
         "zh": "文本太短",
         "en": "Text too short"
       },
       "too_long": {
-        "pt": "Texto muito longo",
         "zh": "文本太长",
         "en": "Text too long"
       }
