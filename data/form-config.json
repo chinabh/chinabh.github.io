@@ -1,10 +1,10 @@
 {
-  "_comment": "✏️ FORM CONFIGURATION - Choose your submission method and customize fields",
+  "_comment": "✏️ FORM CONFIGURATION - Partnership Form for China Business Hub",
   "_instructions": "Update 'action' URL based on your chosen submission method (see options below)",
 
   "submission": {
     "method": "POST",
-    "action": "https://formsubmit.co/your-email@chinabusinesshub.com",
+    "action": "https://formsubmit.co/ladeira.debora@chinabh.com.br",
     "_action_options": {
       "_comment": "Choose ONE option below and update 'action' field above",
       "option_1_formsubmit": {
@@ -36,15 +36,15 @@
 
   "fields": [
     {
-      "name": "name",
+      "name": "company_name_chinese",
       "type": "text",
       "label": {
-        "zh": "姓名 / 公司名称",
-        "en": "Name / Company Name"
+        "zh": "公司名称（中文）",
+        "en": "Company Name (Chinese)"
       },
       "placeholder": {
-        "zh": "您的姓名或公司",
-        "en": "Your name or company"
+        "zh": "请输入公司中文名称",
+        "en": "Enter company name in Chinese"
       },
       "required": true,
       "validation": "text",
@@ -52,132 +52,161 @@
       "maxLength": 100
     },
     {
-      "name": "email",
-      "type": "email",
+      "name": "company_name_english",
+      "type": "text",
       "label": {
-        "zh": "电子邮件",
-        "en": "Email"
+        "zh": "公司名称（英文）",
+        "en": "Company Name (English)"
       },
       "placeholder": {
-        "zh": "your@email.com",
-        "en": "your@email.com"
+        "zh": "请输入公司英文名称",
+        "en": "Enter company name in English"
       },
       "required": true,
-      "validation": "email"
+      "validation": "text",
+      "minLength": 2,
+      "maxLength": 100
+    },
+    {
+      "name": "segment",
+      "type": "text",
+      "label": {
+        "zh": "行业/细分市场",
+        "en": "Segment(s)"
+      },
+      "placeholder": {
+        "zh": "例如：电子产品、纺织品、机械",
+        "en": "e.g., Electronics, Textiles, Machinery"
+      },
+      "required": true,
+      "validation": "text",
+      "maxLength": 200
+    },
+    {
+      "name": "year_established",
+      "type": "text",
+      "label": {
+        "zh": "成立年份",
+        "en": "Year Established"
+      },
+      "placeholder": {
+        "zh": "例如：2010",
+        "en": "e.g., 2010"
+      },
+      "required": true,
+      "validation": "text",
+      "maxLength": 4
     },
     {
       "name": "phone",
       "type": "tel",
       "label": {
-        "zh": "电话 / WhatsApp",
-        "en": "Phone / WhatsApp"
+        "zh": "主要联系电话",
+        "en": "Primary Contact Phone Number"
       },
       "placeholder": {
         "zh": "+86 138 0000 0000",
-        "en": "+55 11 98765-4321"
+        "en": "+86 138 0000 0000"
       },
-      "required": false,
+      "required": true,
       "validation": "phone"
     },
     {
-      "name": "wechat",
-      "type": "text",
+      "name": "email",
+      "type": "email",
       "label": {
-        "zh": "微信号（可选）",
-        "en": "WeChat ID (optional)"
+        "zh": "主要联系邮箱",
+        "en": "Primary Contact Email"
       },
       "placeholder": {
-        "zh": "您的微信号",
-        "en": "Your WeChat ID"
+        "zh": "your@company.com",
+        "en": "your@company.com"
       },
-      "required": false,
-      "validation": "text"
+      "required": true,
+      "validation": "email"
     },
     {
-      "name": "company",
+      "name": "website_social",
       "type": "text",
       "label": {
-        "zh": "公司",
-        "en": "Company"
+        "zh": "网站和社交媒体",
+        "en": "Website and Social Media Pages"
       },
       "placeholder": {
-        "zh": "您的公司名称",
-        "en": "Your company name"
+        "zh": "例如：www.company.com, WeChat: CompanyID",
+        "en": "e.g., www.company.com, WeChat: CompanyID"
       },
       "required": false,
-      "validation": "text"
+      "validation": "text",
+      "maxLength": 300
     },
     {
-      "name": "business_type",
+      "name": "exports_to_brazil",
       "type": "select",
       "label": {
-        "zh": "业务类型",
-        "en": "Business Type"
+        "zh": "您是否已经向巴西出口？",
+        "en": "Do you already export to Brazil?"
       },
-      "required": false,
+      "required": true,
       "options": [
         {
-          "value": "manufacturer",
+          "value": "yes",
           "label": {
-            "zh": "制造商",
-            "en": "Manufacturer"
+            "zh": "是",
+            "en": "Yes"
           }
         },
         {
-          "value": "trader",
+          "value": "no",
           "label": {
-            "zh": "贸易公司",
-            "en": "Trading Company"
-          }
-        },
-        {
-          "value": "distributor",
-          "label": {
-            "zh": "分销商",
-            "en": "Distributor"
-          }
-        },
-        {
-          "value": "buyer",
-          "label": {
-            "zh": "采购商",
-            "en": "Buyer"
-          }
-        },
-        {
-          "value": "other",
-          "label": {
-            "zh": "其他",
-            "en": "Other"
+            "zh": "否",
+            "en": "No"
           }
         }
       ]
     },
     {
-      "name": "products",
+      "name": "main_products_brazil",
       "type": "textarea",
       "label": {
-        "zh": "感兴趣的产品",
-        "en": "Products of Interest"
+        "zh": "如果是，您向巴西出口的主要产品是什么？",
+        "en": "If yes, what are the main products that you export?"
       },
       "placeholder": {
-        "zh": "您想进口/出口哪些产品？",
-        "en": "Which products would you like to import/export?"
+        "zh": "请列出您目前出口到巴西的主要产品",
+        "en": "List the main products you currently export to Brazil"
       },
       "required": false,
       "validation": "text",
-      "rows": 3
+      "rows": 3,
+      "maxLength": 500
     },
     {
-      "name": "message",
+      "name": "challenges_brazil",
       "type": "textarea",
       "label": {
-        "zh": "留言",
-        "en": "Message"
+        "zh": "您在扩大巴西市场销售方面目前面临哪些挑战？",
+        "en": "What are your current challenges, if any, to expand your selling in Brazil?"
       },
       "placeholder": {
-        "zh": "我们如何帮助您？",
-        "en": "How can we help you?"
+        "zh": "请描述您在巴西市场面临的主要挑战",
+        "en": "Describe your main challenges in the Brazilian market"
+      },
+      "required": false,
+      "validation": "text",
+      "rows": 4,
+      "maxLength": 800
+    },
+    {
+      "name": "support_needed",
+      "type": "textarea",
+      "label": {
+        "zh": "您希望China Business Hub如何支持您的公司在巴西发展？",
+        "en": "How do you want China Business Hub to support your company in Brazil?"
+      },
+      "placeholder": {
+        "zh": "请告诉我们您期望的支持类型",
+        "en": "Tell us the type of support you expect"
       },
       "required": true,
       "validation": "text",

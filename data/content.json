@@ -187,16 +187,16 @@
 
   "contact": {
     "section_title": {
-      "zh": "联系我们",
-      "en": "Get in Touch"
+      "zh": "开始您与China Business Hub的合作",
+      "en": "Start Your Partnership with China Business Hub"
     },
     "subtitle": {
-      "zh": "填写下面的表格或通过微信/WhatsApp直接联系",
-      "en": "Fill out the form below or contact us directly via WeChat/WhatsApp"
+      "zh": "请填写以下信息，我们将尽快与您联系讨论合作细节！",
+      "en": "Please fill out the information below and we will contact you soon to discuss partnership details!"
     },
     "form_submit_button": {
-      "zh": "发送信息",
-      "en": "Send Message"
+      "zh": "提交合作申请",
+      "en": "Submit Partnership Request"
     },
     "success_message": {
       "zh": "✅ 消息发送成功！我们将在24小时内回复。",
