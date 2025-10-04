@@ -237,32 +237,47 @@ function generateFormFields(lang) {
 }
 
 function generateContactMethods(lang) {
-    const methods = [
-        {
+    const methods = [];
+
+    // Email - always show if exists
+    if (content.meta.contact?.email) {
+        methods.push({
             icon: '✉️',
             label: 'Email',
             value: content.meta.contact.email,
             link: `mailto:${content.meta.contact.email}`
-        },
-        {
+        });
+    }
+
+    // WhatsApp - only if exists
+    if (content.meta.contact?.whatsapp) {
+        methods.push({
             icon: '📱',
             label: 'WhatsApp',
             value: content.meta.contact.whatsapp,
             link: `https://wa.me/${content.meta.contact.whatsapp.replace(/\D/g, '')}`
-        },
-        {
+        });
+    }
+
+    // WeChat - only if exists
+    if (content.meta.contact?.wechat) {
+        methods.push({
             icon: '💬',
             label: 'WeChat',
             value: content.meta.contact.wechat,
             link: null
-        },
-        {
+        });
+    }
+
+    // Phone - only if exists
+    if (content.meta.contact?.phone) {
+        methods.push({
             icon: '📞',
             label: getText({ pt: 'Telefone', zh: '电话', en: 'Phone' }, lang),
             value: content.meta.contact.phone,
             link: `tel:${content.meta.contact.phone.replace(/\D/g, '')}`
-        }
-    ];
+        });
+    }
 
     return methods
         .map(method => {
@@ -284,14 +299,17 @@ function generateContactMethods(lang) {
 }
 
 function generateWeChatQR(lang) {
-    const qrPath = content.meta.social.wechat_qr;
+    const qrPath = content.meta.social?.wechat_qr;
     if (!qrPath) return '';
+
+    const wechatId = content.meta.contact?.wechat;
+    const wechatIdHtml = wechatId ? `<p><strong>WeChat ID:</strong> ${wechatId}</p>` : '';
 
     return `
         <div class="wechat-qr-container">
             <h3>${getText({ pt: 'Escaneie para WeChat', zh: '扫码添加微信', en: 'Scan for WeChat' }, lang)}</h3>
             <img src="${qrPath}" alt="WeChat QR Code" />
-            <p><strong>WeChat ID:</strong> ${content.meta.contact.wechat}</p>
+            ${wechatIdHtml}
         </div>
     `;
 }
@@ -300,6 +318,33 @@ function generateFooterLinks(lang) {
     return content.footer.links
         .map(link => `<a href="${link.url}">${getText(link.label, lang)}</a>`)
         .join('\n            ');
+}
+
+function generateHeaderButtons(lang) {
+    if (!content.header?.buttons) return '';
+
+    return content.header.buttons
+        .map(button => {
+            const label = getText(button.label, lang);
+            const styleClass = button.style === 'secondary' ? 'btn-secondary' : 'btn-primary';
+            return `<a href="${button.target}" onclick="scrollToSection('${button.target}'); return false;" class="header-btn ${styleClass}">${label}</a>`;
+        })
+        .join('\n                ');
+}
+
+function generateWhatsAppButton() {
+    const whatsapp = content.meta.contact?.whatsapp;
+    if (!whatsapp) return '';
+
+    const whatsappNumber = whatsapp.replace(/\D/g, '');
+
+    return `
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/${whatsappNumber}" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="white">
+            <path d="M20.1 0C9.1 0 0.2 8.9 0.2 19.9c0 3.5 0.9 6.9 2.6 9.9L0 40l10.5-2.8c2.9 1.6 6.2 2.4 9.6 2.4C31.1 39.7 40 30.8 40 19.9S31.1 0 20.1 0zm11.5 28.2c-0.5 1.4-2.9 2.6-4 2.7c-1.1 0.1-1 0.8-6.4-1.3c-6.5-2.6-10.7-9.3-11-9.7c-0.3-0.4-2.6-3.5-2.6-6.6s1.7-4.7 2.3-5.3c0.6-0.6 1.3-0.8 1.7-0.8s0.9 0 1.2 0c0.4 0 0.9-0.2 1.4 1.1s1.7 4.1 1.8 4.4c0.1 0.3 0.2 0.6 0 1c-0.2 0.4-0.3 0.6-0.6 0.9s-0.6 0.7-0.9 1.1c-0.3 0.3-0.6 0.7-0.3 1.3c0.4 0.7 1.6 2.6 3.5 4.2c2.4 2 4.4 2.7 5 2.9c0.6 0.3 0.9 0.2 1.3-0.1c0.3-0.4 1.4-1.6 1.8-2.1c0.4-0.6 0.7-0.5 1.3-0.3c0.5 0.2 3.3 1.6 3.9 1.9c0.6 0.3 0.9 0.4 1 0.6C32.6 25.4 32.1 26.8 31.6 28.2z"/>
+        </svg>
+    </a>`;
 }
 
 // ============================================
@@ -319,6 +364,11 @@ function generatePage(lang) {
         '{{META_DESCRIPTION}}': content.meta.description,
         '{{META_KEYWORDS}}': content.meta.keywords,
         '{{OG_IMAGE}}': content.hero.background_image,
+
+        // Header
+        '{{HEADER_LOGO}}': content.header?.logo || '/images/logo.png',
+        '{{HEADER_LOGO_ALT}}': getText(content.header?.logo_alt || { en: 'Logo', zh: '标志' }, lang),
+        '{{HEADER_BUTTONS}}': generateHeaderButtons(lang),
 
         // Language switcher
         '{{LANGUAGE_OPTIONS}}': generateLanguageOptions(lang),
@@ -365,8 +415,8 @@ function generatePage(lang) {
         '{{FOOTER_LINKS}}': generateFooterLinks(lang),
         '{{FOOTER_COPYRIGHT}}': getText(content.footer.copyright, lang),
 
-        // WhatsApp
-        '{{WHATSAPP_NUMBER}}': content.meta.contact.whatsapp.replace(/\D/g, ''),
+        // WhatsApp button (optional)
+        '{{WHATSAPP_BUTTON}}': generateWhatsAppButton(),
     };
 
     for (const [key, value] of Object.entries(replacements)) {
@@ -426,16 +476,23 @@ fs.writeFileSync(
 );
 console.log('  ✅ Created form-handler.js');
 
-// Copy images from public/media
+// Copy images from project /images directory
 const imagesDir = path.join(DIST_DIR, 'images');
 ensureDir(imagesDir);
 
+const projectImagesDir = path.join(ROOT_DIR, 'images');
+if (fs.existsSync(projectImagesDir)) {
+    copyRecursive(projectImagesDir, imagesDir);
+    console.log('  ✅ Copied images from /images');
+} else {
+    console.warn('  ⚠️  No images directory found at /images');
+}
+
+// Also copy images from public/media if it exists (for backward compatibility)
 const mediaSourceDir = path.join(PUBLIC_DIR, 'media');
 if (fs.existsSync(mediaSourceDir)) {
     copyRecursive(mediaSourceDir, imagesDir);
-    console.log('  ✅ Copied images from public/media');
-} else {
-    console.warn('  ⚠️  No media directory found at public/media');
+    console.log('  ✅ Copied additional images from public/media');
 }
 
 // Copy favicon

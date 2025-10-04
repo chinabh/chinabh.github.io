@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "node src/generator.js",
-    "preview": "npx http-server dist -p 8080 -o",
+    "preview": "npx http-server dist -p 8080 -o -c-1",
     "dev": "npm run build && npm run preview",
     "validate": "node scripts/validate-content.js",
     "optimize-images": "node scripts/optimize-images.js"
