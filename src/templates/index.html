@@ -253,6 +253,21 @@
         if (window.location.search.includes('submitted=true')) {
             document.getElementById('form-success').style.display = 'block';
             document.getElementById('contact-form').style.display = 'none';
+
+            // Scroll to contact section to show success message
+            setTimeout(() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    const headerOffset = 80; // Account for fixed header
+                    const elementPosition = contactSection.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 100); // Small delay to ensure DOM is ready
         }
     </script>
 
