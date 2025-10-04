@@ -11,7 +11,7 @@
     "description": "Connecting established Chinese companies with opportunities in Brazil",
     "keywords": "China, Brazil, B2B, import, export, BRICS, Canton Fair",
     "contact": {
-      "email": "ladeira.debora@chinabh.com.br",
+      "email": "contato@chinabh.com.br",
       "phone": "+55 21 96812-1455 (Debora Ladeira, COO)",
       "address": "Belo Horizonte, Minas Gerais, Brazil"
     }
@@ -24,6 +24,11 @@
       "en": "China Business Hub Logo"
     },
     "buttons": [
+      {
+        "label": { "zh": "关于我们", "en": "About Us" },
+        "target": "#about",
+        "style": "secondary"
+      },
       {
         "label": { "zh": "联系我们", "en": "Contact Us" },
         "target": "#contact",
