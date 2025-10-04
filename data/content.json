@@ -135,15 +135,15 @@
           "en": "Complete verification of companies, products, and certifications to ensure safe transactions."
         },
         "icon": "🛡️"
-      },
-      {
-        "title": { "zh": "进口咨询", "en": "Import Consulting" },
-        "description": {
-          "zh": "物流、文件、合规和巴西法规的全面咨询。",
-          "en": "Complete advisory on logistics, documentation, compliance, and Brazilian regulations."
-        },
-        "icon": "📦"
       }
+//      {
+//        "title": { "zh": "进口咨询", "en": "Import Consulting" },
+//        "description": {
+//          "zh": "物流、文件、合规和巴西法规的全面咨询。",
+//          "en": "Complete advisory on logistics, documentation, compliance, and Brazilian regulations."
+//        },
+//        "icon": "📦"
+//      }
     ]
   },
 
@@ -179,6 +179,14 @@
       },
       {
         "number": "4",
+        "title": { "zh": "市场拓展", "en": "Market Development" },
+        "description": {
+          "zh": "制定市场进入策略，建立品牌知名度，开拓新的销售渠道和客户群体。",
+          "en": "Develop market entry strategies, build brand awareness, and expand into new sales channels and customer segments."
+        }
+      },
+      {
+        "number": "5",
         "title": { "zh": "持续支持", "en": "Ongoing Support" },
         "description": {
           "zh": "售后跟进、物流和解决文化/商业问题。",
