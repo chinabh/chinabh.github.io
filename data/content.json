@@ -50,17 +50,20 @@
       "en": "Our Process"
     },
     "trust_badges": [
-      {
-        "text": { "zh": "金砖合作伙伴", "en": "BRICS Partners" },
-        "icon": "✓"
-      },
-      {
-        "text": { "zh": "广交会", "en": "Canton Fair" },
-        "icon": "★"
-      },
+      // {
+      //   "text": { "zh": "金砖合作伙伴", "en": "BRICS Partners" },
+      //   "icon": "✓",
+      //   "enabled": false
+      // },
+      // {
+      //   "text": { "zh": "广交会", "en": "Canton Fair" },
+      //   "icon": "★",
+      //   "enabled": false
+      // },
       {
         "text": { "zh": "B2B专家", "en": "B2B Experts" },
-        "icon": "◆"
+        "icon": "◆",
+        "enabled": true
       }
     ],
     "background_image": "/images/cbh_hero_banner.png",
@@ -91,7 +94,7 @@
       }
     },
     "guanxi": {
-      "enabled": true,
+      "enabled": false, // Disabled - set to true to show Guanxi section
       "title": {
         "zh": "关系 - 搭建桥梁",
         "en": "Guanxi (关系) - Building Bridges"

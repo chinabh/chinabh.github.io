@@ -56,18 +56,40 @@ function copyRecursive(src, dest) {
 }
 
 // ============================================
+// UTILITY: STRIP COMMENTS FROM JSON
+// ============================================
+
+/**
+ * Strips // style comments from JSON files
+ * Allows using comments in JSON for better maintainability
+ */
+function stripJsonComments(jsonString) {
+    // Remove single-line comments (// ...)
+    // But preserve URLs (http://, https://)
+    return jsonString
+        .split('\n')
+        .map(line => {
+            // Find // that's not part of a URL
+            const commentIndex = line.search(/(?<!:)\/\//);
+            if (commentIndex !== -1) {
+                return line.substring(0, commentIndex);
+            }
+            return line;
+        })
+        .join('\n');
+}
+
+// ============================================
 // LOAD DATA
 // ============================================
 
 console.log('📖 Loading content and configuration...');
 
-const content = JSON.parse(
-    fs.readFileSync(path.join(DATA_DIR, 'content.json'), 'utf-8')
-);
+const contentRaw = fs.readFileSync(path.join(DATA_DIR, 'content.json'), 'utf-8');
+const content = JSON.parse(stripJsonComments(contentRaw));
 
-const formConfig = JSON.parse(
-    fs.readFileSync(path.join(DATA_DIR, 'form-config.json'), 'utf-8')
-);
+const formConfigRaw = fs.readFileSync(path.join(DATA_DIR, 'form-config.json'), 'utf-8');
+const formConfig = JSON.parse(stripJsonComments(formConfigRaw));
 
 const template = fs.readFileSync(
     path.join(SRC_DIR, 'templates', 'index.html'),
@@ -113,7 +135,12 @@ function generateLanguageOptions(currentLang) {
 }
 
 function generateTrustBadges(lang) {
-    return content.hero.trust_badges
+    if (!content.hero.trust_badges || content.hero.trust_badges.length === 0) {
+        return '';
+    }
+
+    const badges = content.hero.trust_badges
+        .filter(badge => badge.enabled !== false) // Filter out disabled badges
         .map(badge => `
             <div class="trust-badge">
                 <span>${badge.icon}</span>
@@ -121,6 +148,11 @@ function generateTrustBadges(lang) {
             </div>
         `)
         .join('');
+
+    // If no badges after filtering, return empty string
+    if (!badges.trim()) return '';
+
+    return `<div class="trust-badges">${badges}</div>`;
 }
 
 function generateCantonBanner(lang) {
