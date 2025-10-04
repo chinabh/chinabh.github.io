@@ -113,6 +113,10 @@ if (process.env.DEFAULT_RECEPTION_EMAIL) {
     console.log(`📧 Using form email from environment: ${formConfig.submission.action}`);
 }
 
+// Password protection (pre-launch)
+const IN_PRODUCTION = process.env.IN_PRODUCTION === 'true';
+const SITE_PASSWORD = process.env.SITE_PASSWORD || 'chinabh2025';
+
 console.log('✅ Data loaded successfully');
 
 // ============================================
@@ -379,6 +383,59 @@ function generateWhatsAppButton() {
     </a>`;
 }
 
+function generatePasswordProtection() {
+    if (IN_PRODUCTION) {
+        return ''; // No password protection in production
+    }
+
+    return `
+    <div id="password-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); z-index: 9999; display: flex; align-items: center; justify-content: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+        <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-width: 400px; width: 90%; text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 20px;">🔒</div>
+            <h2 style="margin: 0 0 10px 0; color: #1f2937; font-size: 24px;">Preview Access</h2>
+            <p style="color: #6b7280; margin: 0 0 30px 0; font-size: 14px;">This site is not yet launched. Enter password to continue.</p>
+            <input type="password" id="password-input" placeholder="Enter password" style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 16px; margin-bottom: 16px; box-sizing: border-box; transition: border-color 0.2s;" onfocus="this.style.borderColor='#667eea'" onblur="this.style.borderColor='#e5e7eb'" />
+            <button onclick="checkPassword()" style="width: 100%; padding: 12px 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 20px rgba(102,126,234,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">Unlock Site</button>
+            <p id="password-error" style="color: #ef4444; margin: 16px 0 0 0; font-size: 14px; display: none;">Incorrect password. Please try again.</p>
+        </div>
+    </div>
+    <script>
+        const correctPassword = '${SITE_PASSWORD}';
+
+        function checkPassword() {
+            const input = document.getElementById('password-input');
+            const error = document.getElementById('password-error');
+
+            if (input.value === correctPassword) {
+                document.getElementById('password-overlay').style.display = 'none';
+                sessionStorage.setItem('siteUnlocked', 'true');
+            } else {
+                error.style.display = 'block';
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('password-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Check if already unlocked in this session
+        if (sessionStorage.getItem('siteUnlocked') === 'true') {
+            document.getElementById('password-overlay').style.display = 'none';
+        }
+
+        // Focus password input on load
+        setTimeout(() => {
+            document.getElementById('password-input').focus();
+        }, 100);
+    </script>
+    `;
+}
+
 // ============================================
 // GENERATE PAGE FOR LANGUAGE
 // ============================================
@@ -449,6 +506,9 @@ function generatePage(lang) {
 
         // WhatsApp button (optional)
         '{{WHATSAPP_BUTTON}}': generateWhatsAppButton(),
+
+        // Password protection (pre-launch)
+        '{{PASSWORD_PROTECTION}}': generatePasswordProtection(),
     };
 
     for (const [key, value] of Object.entries(replacements)) {
