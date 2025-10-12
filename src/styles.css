@@ -372,7 +372,7 @@ a:hover {
 }
 
 .about-card h3 {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-2xl);
     margin-bottom: var(--spacing-sm);
     color: var(--color-primary);
 }
@@ -414,12 +414,12 @@ a:hover {
 }
 
 .service-icon {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: var(--spacing-md);
 }
 
 .service-card h3 {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-2xl);
     margin-bottom: var(--spacing-sm);
     color: var(--color-text);
 }
@@ -458,7 +458,7 @@ a:hover {
 }
 
 .process-step h3 {
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-lg);
     margin-bottom: var(--spacing-xs);
     font-weight: 600;
 }

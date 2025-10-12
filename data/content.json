@@ -43,12 +43,12 @@
       "en": "Your Bridge to the Brazilian Market"
     },
     "subtitle": {
-      "zh": "通过信任、专业知识和战略合作伙伴关系，将成熟的中国企业与巴西的无限机遇联系起来。",
-      "en": "Connecting established Chinese companies with infinite opportunities in Brazil through trust, expertise, and strategic partnerships."
+      "zh": "通过信任、专业知识和战略合作伙伴关系，将中国企业与巴西的机遇联系起来。",
+      "en": "Connecting Chinese companies with opportunities in Brazil through trust, expertise, and strategic partnerships."
     },
     "cta_primary": {
       "zh": "预约会议",
-      "en": "Schedule Meeting"
+      "en": "Schedule a Meeting"
     },
     "cta_secondary": {
       "zh": "我们的流程",
@@ -87,8 +87,8 @@
     "mission": {
       "title": { "zh": "我们的使命", "en": "Our Mission" },
       "content": {
-        "zh": "促进成熟中国企业战略性进入巴西市场，建立基于互信和可持续增长的持久合作伙伴关系。",
-        "en": "Facilitate the strategic entry of established Chinese companies into the Brazilian market, creating lasting partnerships based on mutual trust and sustainable growth."
+        "zh": "促进中国企业战略性进入巴西市场，建立基于互信和可持续增长的有价值合作伙伴关系。",
+        "en": "Facilitate the strategic entry of Chinese companies into the Brazilian market, creating valuable partnerships based on mutual trust and sustainable growth."
       }
     },
     "vision": {
@@ -120,10 +120,26 @@
       {
         "title": { "zh": "B2B虚拟展会", "en": "B2B Virtual Fair" },
         "description": {
-          "zh": "数字平台连接经过验证的中国供应商与合格的巴西买家。",
-          "en": "Digital platform connecting verified Chinese suppliers with qualified Brazilian buyers."
+          "zh": "数字平台连接中国供应商与合格的巴西买家。",
+          "en": "Digital platform connecting Chinese suppliers with qualified Brazilian buyers."
         },
         "icon": "🌐"
+      },
+      {
+        "title": { "zh": "市场评估与开发", "en": "Market Assessment and Development" },
+        "description": {
+          "zh": "识别品牌和产品在巴西市场发展最有前景的地区，并进行市场开发运营。",
+          "en": "Identification of the most promising regions for brand and products development on the Brazilian market, and operation for market development."
+        },
+        "icon": "📊"
+      },
+      {
+        "title": { "zh": "交易支持", "en": "Deal Support" },
+        "description": {
+          "zh": "通过与合作伙伴的关系管理，为中国公司提供法律和税务方面的全面支持，为巴西客户提供认证和进口方面的支持。",
+          "en": "Complete support for Chinese companies on the legal and tax aspects, and for Brazilian customers on the certification and importation, through management of the relationship with our partners."
+        },
+        "icon": "🤝"
       },
       {
         "title": { "zh": "线下活动", "en": "In-Person Events" },
@@ -131,13 +147,13 @@
           "zh": "商务访问、业务洽谈会和国际展会参与。",
           "en": "Trade missions, business rounds, and participation in international fairs."
         },
-        "icon": "🤝"
+        "icon": "✈️"
       },
       {
         "title": { "zh": "尽职调查", "en": "Due Diligence" },
         "description": {
-          "zh": "全面核实公司、产品和认证，确保交易安全。",
-          "en": "Complete verification of companies, products, and certifications to ensure safe transactions."
+          "zh": "全面核实公司、产品和认证，确保中国公司在巴西的交易安全。",
+          "en": "Complete verification of companies, products, and certifications to ensure safe transactions for Chinese companies in Brazil."
         },
         "icon": "🛡️"
       }
@@ -154,48 +170,48 @@
 
   "process": {
     "section_title": {
-      "zh": "如何运作",
-      "en": "How It Works"
+      "zh": "",
+      "en": ""
     },
     "steps": [
       {
         "number": "1",
         "title": { "zh": "初次会议", "en": "Initial Meeting" },
         "description": {
-          "zh": "了解您在巴西市场的需求、产品和目标。",
-          "en": "We understand your needs, products, and goals in the Brazilian market."
+          "zh": "了解您为巴西市场的需求、产品和目标。",
+          "en": "We understand your needs, products, and goals for the Brazilian market."
         }
       },
       {
         "number": "2",
-        "title": { "zh": "市场分析", "en": "Market Analysis" },
+        "title": { "zh": "市场评估", "en": "Market Assessment" },
         "description": {
-          "zh": "研究您行业的需求、竞争和具体机会。",
-          "en": "Research on demand, competition, and specific opportunities for your sector."
+          "zh": "研究和识别与您的目标相匹配的需求、竞争和机会。",
+          "en": "Research and identification of demand, competition, and opportunities that match your goals."
         }
       },
       {
         "number": "3",
-        "title": { "zh": "合作伙伴匹配", "en": "Partner Matching" },
+        "title": { "zh": "市场匹配", "en": "Market Matching" },
         "description": {
-          "zh": "介绍合格买家和经过验证的分销商。",
-          "en": "We introduce qualified buyers and verified distributors in your area."
+          "zh": "介绍您特定市场的合格买家和经过验证的分销商。",
+          "en": "Introduction of qualified buyers and verified distributors of your specific market."
         }
       },
       {
         "number": "4",
         "title": { "zh": "市场拓展", "en": "Market Development" },
         "description": {
-          "zh": "制定市场进入策略，建立品牌知名度，开拓新的销售渠道和客户群体。",
-          "en": "Develop market entry strategies, build brand awareness, and expand into new sales channels and customer segments."
+          "zh": "通过本地市场影响力，我们在巴西市场战略性地发展品牌和产品的存在。",
+          "en": "Through local market influence, we strategically develop brand and products presence in the Brazilian market."
         }
       },
       {
         "number": "5",
-        "title": { "zh": "持续支持", "en": "Ongoing Support" },
+        "title": { "zh": "交易支持", "en": "Deal Support" },
         "description": {
-          "zh": "售后跟进、物流和解决文化/商业问题。",
-          "en": "Post-sale follow-up, logistics, and resolution of cultural/commercial issues."
+          "zh": "售前和售后跟进、物流和解决文化/商业挑战。",
+          "en": "Pre and post-sale follow-up, logistics, and resolution of cultural/commercial challenges."
         }
       }
     ]
