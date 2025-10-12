@@ -221,6 +221,22 @@
     "error_message": {
       "zh": "❌ 发送错误。请通过WhatsApp或微信联系。",
       "en": "❌ Error sending. Please try via WhatsApp or WeChat."
+    },
+    "error_missing_fields": {
+      "zh": "❌ 请填写所有必填字段（标有红色星号*）。",
+      "en": "❌ Please fill in all required fields (marked with red asterisk *)."
+    },
+    "error_invalid_email": {
+      "zh": "❌ 电子邮件格式无效。请检查并重试。",
+      "en": "❌ Invalid email format. Please check and try again."
+    },
+    "error_send_failed": {
+      "zh": "❌ 无法发送消息。请稍后重试或通过WhatsApp/微信联系。",
+      "en": "❌ Failed to send message. Please try again later or contact via WhatsApp/WeChat."
+    },
+    "error_spam": {
+      "zh": "❌ 提交被阻止。如果这是一个错误，请通过WhatsApp或微信联系我们。",
+      "en": "❌ Submission blocked. If this is an error, please contact us via WhatsApp or WeChat."
     }
   },
 

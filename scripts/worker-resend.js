@@ -16,20 +16,20 @@ export default {
       // Honeypot spam check
       if (data._gotcha && data._gotcha.trim() !== '') {
         console.log('Spam blocked via honeypot');
-        return createRedirect(origin, true);
+        return createRedirect(origin, 'spam');
       }
 
-      // Validate required fields
-      if (!data.name || !data.email || !data.message) {
+      // Validate required fields (matching form-config.json)
+      if (!data.company_name_chinese || !data.company_name_english || !data.email || !data.support_needed) {
         console.log('Missing required fields');
-        return createRedirect(origin, false);
+        return createRedirect(origin, 'missing_fields');
       }
 
       // Basic email validation
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(data.email)) {
         console.log('Invalid email format');
-        return createRedirect(origin, false);
+        return createRedirect(origin, 'invalid_email');
       }
 
       // Send email via Resend
@@ -37,16 +37,16 @@ export default {
 
       if (!emailSent) {
         console.log('Failed to send email');
-        return createRedirect(origin, false);
+        return createRedirect(origin, 'send_failed');
       }
 
       // Success - redirect back
       console.log('Form submitted successfully');
-      return createRedirect(origin, true);
+      return createRedirect(origin, 'success');
 
     } catch (error) {
       console.error('Error processing form:', error);
-      return createRedirect(origin, false);
+      return createRedirect(origin, 'send_failed');
     }
   }
 };
@@ -55,27 +55,35 @@ export default {
  * Send email via Resend API
  */
 async function sendEmail(data, env) {
-  // Format email content
+  // Format email content (matching form-config.json fields)
   const emailBody = `
-New Contact Form Submission
-===========================
+New Partnership Form Submission
+================================
+
+Company Information:
+-------------------
+Company Name (Chinese): ${data.company_name_chinese}
+Company Name (English): ${data.company_name_english}
+Segment(s): ${data.segment}
+Year Established: ${data.year_established}
 
 Contact Information:
 -------------------
-Name/Company: ${data.name}
-Email: ${data.email}
-Phone: ${data.phone || 'Not provided'}
-WeChat: ${data.wechat || 'Not provided'}
-Company: ${data.company || 'Not provided'}
+Primary Phone: ${data.phone}
+Primary Email: ${data.email}
+Website/Social: ${data.website_social || 'Not provided'}
 
-Business Details:
-----------------
-Business Type: ${data.business_type || 'Not specified'}
-Products of Interest: ${data.products || 'Not specified'}
+Export Information:
+------------------
+Already exports to Brazil: ${data.exports_to_brazil}
+Main products exported: ${data.main_products_brazil || 'N/A'}
 
-Message:
---------
-${data.message}
+Challenges & Support:
+--------------------
+Challenges in Brazil: ${data.challenges_brazil || 'Not specified'}
+
+Support Needed:
+${data.support_needed}
 
 Metadata:
 ---------
@@ -85,7 +93,7 @@ User Agent: ${data._user_agent || 'Unknown'}
 Timestamp: ${new Date().toISOString()}
 
 ---
-Sent via China Business Hub Contact Form
+Sent via China Business Hub Partnership Form
   `.trim();
 
   // Get configuration from environment variables
@@ -109,7 +117,7 @@ Sent via China Business Hub Contact Form
       body: JSON.stringify({
         from: `China Business Hub <noreply@${fromDomain}>`,
         to: [recipientEmail],
-        subject: `New Contact: ${data.name} - China Business Hub`,
+        subject: `New Partnership: ${data.company_name_english} - China Business Hub`,
         reply_to: data.email,
         text: emailBody,
       }),
@@ -132,10 +140,19 @@ Sent via China Business Hub Contact Form
 }
 
 /**
- * Create redirect response
+ * Create redirect response with specific error codes
+ * @param {string} origin - The origin URL
+ * @param {string} status - Status code: 'success', 'missing_fields', 'invalid_email', 'send_failed', 'spam'
  */
-function createRedirect(origin, success) {
-  const param = success ? 'submitted=true' : 'error=true';
+function createRedirect(origin, status) {
+  let param;
+
+  if (status === 'success') {
+    param = 'submitted=true';
+  } else {
+    param = `error=${status}`;
+  }
+
   const redirectUrl = origin ? `${origin}?${param}` : `/?${param}`;
 
   return Response.redirect(redirectUrl, 302);

@@ -212,8 +212,11 @@
             window.location.href = newPath;
         }
 
-        // Form validation and submission
-        function handleFormSubmit(event) {
+        // REDUNDANT FORM SUBMISSION WITH BACKUP
+        // Submits to both Cloudflare Worker + Formspree for reliability
+        async function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+
             const form = event.target;
             const submitBtn = document.getElementById('submit-btn');
             const successMsg = document.getElementById('form-success');
@@ -237,18 +240,132 @@
             });
 
             if (!isValid) {
-                errorMsg.textContent = '{{ERROR_MESSAGE}}';
+                errorMsg.textContent = '{{ERROR_MISSING_FIELDS}}';
                 errorMsg.style.display = 'block';
                 return false;
+            }
+
+            // Get form data
+            const formData = new FormData(form);
+            const formObject = Object.fromEntries(formData.entries());
+
+            // 1. SAVE TO LOCALSTORAGE (instant backup)
+            try {
+                localStorage.setItem('cbh_form_backup', JSON.stringify(formObject));
+                localStorage.setItem('cbh_form_timestamp', Date.now());
+            } catch (e) {
+                console.warn('LocalStorage not available:', e);
             }
 
             // Show loading state
             submitBtn.disabled = true;
             submitBtn.textContent = '{{LOADING_TEXT}}';
 
-            // If using FormSubmit or similar, let form submit naturally
-            // Otherwise, handle with fetch API
-            return true; // Allow form submission
+            // 2. DUAL SUBMISSION: Worker (primary) + Formspree (backup)
+            const workerUrl = '{{FORM_ACTION}}';
+            const formspreeUrl = 'https://formspree.io/f/mblzprdg';
+
+            try {
+                // Submit to BOTH endpoints simultaneously
+                const workerPromise = fetch(workerUrl, {
+                    method: 'POST',
+                    body: formData,
+                    redirect: 'manual'
+                }).catch(e => ({ error: 'worker_failed', message: e.message }));
+
+                const formspreePromise = fetch(formspreeUrl, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                }).catch(e => ({ error: 'formspree_failed', message: e.message }));
+
+                // Wait for BOTH (don't fail if one fails)
+                const [workerResult, formspreeResult] = await Promise.all([workerPromise, formspreePromise]);
+
+                // Check results
+                const workerSuccess = workerResult.status === 302 || workerResult.status === 200;
+                const formspreeSuccess = formspreeResult.ok || formspreeResult.status === 200;
+
+                if (workerSuccess || formspreeSuccess) {
+                    // SUCCESS: At least one worked!
+
+                    // Clear localStorage backup
+                    try {
+                        localStorage.removeItem('cbh_form_backup');
+                        localStorage.removeItem('cbh_form_timestamp');
+                    } catch (e) {}
+
+                    // Show success message
+                    successMsg.style.display = 'block';
+                    form.style.display = 'none';
+
+                    // Scroll to success message
+                    setTimeout(() => {
+                        const contactSection = document.getElementById('contact');
+                        if (contactSection) {
+                            const headerOffset = 80;
+                            const elementPosition = contactSection.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                        }
+                    }, 100);
+
+                    return false;
+                } else {
+                    // BOTH FAILED
+                    throw new Error('Both submission endpoints failed');
+                }
+
+            } catch (error) {
+                console.error('Form submission error:', error);
+
+                // Show error with retry option
+                errorMsg.innerHTML = '{{ERROR_SEND_FAILED}} <br><button onclick="retryFormSubmission()" style="margin-top:10px;padding:8px 16px;background:#dc2626;color:white;border:none;border-radius:4px;cursor:pointer;">Retry Submission</button>';
+                errorMsg.style.display = 'block';
+
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.textContent = '{{FORM_SUBMIT_TEXT}}';
+
+                // Scroll to error
+                setTimeout(() => {
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        const headerOffset = 80;
+                        const elementPosition = contactSection.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    }
+                }, 100);
+            }
+
+            return false;
+        }
+
+        // Retry submission from localStorage
+        function retryFormSubmission() {
+            try {
+                const savedData = localStorage.getItem('cbh_form_backup');
+                if (savedData) {
+                    const formObject = JSON.parse(savedData);
+                    const form = document.getElementById('contact-form');
+
+                    // Restore form data
+                    Object.keys(formObject).forEach(key => {
+                        const field = form.elements[key];
+                        if (field) field.value = formObject[key];
+                    });
+
+                    // Trigger submit
+                    handleFormSubmit({
+                        target: form,
+                        preventDefault: () => {}
+                    });
+                }
+            } catch (e) {
+                console.error('Retry failed:', e);
+                alert('Please refresh the page and try again.');
+            }
         }
 
         // Show success message after redirect (if using FormSubmit)
@@ -270,6 +387,49 @@
                     });
                 }
             }, 100); // Small delay to ensure DOM is ready
+        }
+
+        // Show error message after redirect
+        if (window.location.search.includes('error=')) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const errorType = urlParams.get('error');
+            const errorMsg = document.getElementById('form-error');
+            const submitBtn = document.getElementById('submit-btn');
+
+            // Re-enable submit button
+            submitBtn.disabled = false;
+            submitBtn.textContent = '{{FORM_SUBMIT_TEXT}}';
+
+            // Determine specific error message
+            let errorText = '{{ERROR_MESSAGE}}'; // Default error
+
+            if (errorType === 'missing_fields') {
+                errorText = '{{ERROR_MISSING_FIELDS}}';
+            } else if (errorType === 'invalid_email') {
+                errorText = '{{ERROR_INVALID_EMAIL}}';
+            } else if (errorType === 'send_failed') {
+                errorText = '{{ERROR_SEND_FAILED}}';
+            } else if (errorType === 'spam') {
+                errorText = '{{ERROR_SPAM}}';
+            }
+
+            errorMsg.textContent = errorText;
+            errorMsg.style.display = 'block';
+
+            // Scroll to contact section to show error message
+            setTimeout(() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    const headerOffset = 80;
+                    const elementPosition = contactSection.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 100);
         }
     </script>
 
