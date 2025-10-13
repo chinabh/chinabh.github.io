@@ -362,7 +362,14 @@ function generateHeaderButtons(lang) {
     return content.header.buttons
         .map(button => {
             const label = getText(button.label, lang);
-            const styleClass = button.style === 'secondary' ? 'btn-secondary' : 'btn-primary';
+
+            // Determine button style class
+            let styleClass = 'btn-primary';
+            if (button.style === 'secondary') {
+                styleClass = 'btn-secondary';
+            } else if (button.style === 'tertiary') {
+                styleClass = 'btn-tertiary';
+            }
 
             // External links open in new tab
             if (button.external) {

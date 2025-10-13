@@ -30,9 +30,9 @@
         "style": "secondary"
       },
       {
-        "label": { "zh": "查看虚拟展会（预览）", "en": "See our Virtual Fair (Preview)" },
+        "label": { "zh": "查看虚拟展会（预览）", "en": "See Our Virtual Fair (Preview)" },
         "target": "https://preview.chinabh.com.br",
-        "style": "secondary",
+        "style": "tertiary",
         "external": true
       },
       {
@@ -62,7 +62,7 @@
     },
     "cta_tertiary": {
       "zh": "查看虚拟展会（预览）",
-      "en": "See our Virtual Fair (Preview)"
+      "en": "See Our Virtual Fair (Preview)"
     },
     "cta_tertiary_url": "https://preview.chinabh.com.br",
     "trust_badges": [

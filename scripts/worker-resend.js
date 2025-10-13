@@ -97,12 +97,25 @@ Sent via China Business Hub Partnership Form
   `.trim();
 
   // Get configuration from environment variables
-  const recipientEmail = env.RECIPIENT_EMAIL || 'contato@chinabusinesshub.com';
+  const recipientEmailsRaw = env.RECIPIENT_EMAIL || 'contato@chinabusinesshub.com';
   const resendApiKey = env.RESEND_API_KEY;
   const fromDomain = env.FROM_DOMAIN || 'chinabh-github-io.pages.dev';
 
+  // Parse multiple recipient emails (comma-separated)
+  const recipientEmails = recipientEmailsRaw
+    .split(',')
+    .map(email => email.trim())
+    .filter(email => email.length > 0);
+
+  console.log(`Sending to ${recipientEmails.length} recipient(s):`, recipientEmails.join(', '));
+
   if (!resendApiKey) {
     console.error('RESEND_API_KEY not set');
+    return false;
+  }
+
+  if (recipientEmails.length === 0) {
+    console.error('No valid recipient emails found');
     return false;
   }
 
@@ -116,7 +129,7 @@ Sent via China Business Hub Partnership Form
       },
       body: JSON.stringify({
         from: `China Business Hub <noreply@${fromDomain}>`,
-        to: [recipientEmail],
+        to: recipientEmails,
         subject: `New Partnership: ${data.company_name_english} - China Business Hub`,
         reply_to: data.email,
         text: emailBody,

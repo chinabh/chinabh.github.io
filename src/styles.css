@@ -192,6 +192,20 @@ a:hover {
     color: white;
 }
 
+.header-btn.btn-tertiary {
+    background: #FCE300;
+    color: #1f2937;
+    border: 2px solid #FCE300;
+}
+
+.header-btn.btn-tertiary:hover {
+    background: #D8B800;
+    border-color: #D8B800;
+    color: #1f2937;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(252, 227, 0, 0.3);
+}
+
 /* ============================================
    LANGUAGE SWITCHER (inside header)
    ============================================ */
@@ -340,6 +354,20 @@ a:hover {
 .btn-secondary:hover {
     background: transparent;
     color: white;
+}
+
+.btn-tertiary {
+    background: #FCE300;
+    border: 2px solid #FCE300;
+    color: #1f2937;
+}
+
+.btn-tertiary:hover {
+    background: #D8B800;
+    border-color: #D8B800;
+    color: #1f2937;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(216, 184, 0, 0.4);
 }
 
 .btn-block {
