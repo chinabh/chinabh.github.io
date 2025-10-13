@@ -363,6 +363,13 @@ function generateHeaderButtons(lang) {
         .map(button => {
             const label = getText(button.label, lang);
             const styleClass = button.style === 'secondary' ? 'btn-secondary' : 'btn-primary';
+
+            // External links open in new tab
+            if (button.external) {
+                return `<a href="${button.target}" class="header-btn ${styleClass}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+            }
+
+            // Internal links with scroll behavior
             return `<a href="${button.target}" onclick="scrollToSection('${button.target}'); return false;" class="header-btn ${styleClass}">${label}</a>`;
         })
         .join('\n                ');
@@ -468,6 +475,8 @@ function generatePage(lang) {
         '{{HERO_BG_IMAGE}}': content.hero.background_image,
         '{{HERO_CTA_PRIMARY}}': getText(content.hero.cta_primary, lang),
         '{{HERO_CTA_SECONDARY}}': getText(content.hero.cta_secondary, lang),
+        '{{HERO_CTA_TERTIARY}}': getText(content.hero.cta_tertiary, lang),
+        '{{HERO_CTA_TERTIARY_URL}}': content.hero.cta_tertiary_url,
         '{{TRUST_BADGES}}': generateTrustBadges(lang),
         '{{CANTON_BANNER}}': generateCantonBanner(lang),
 

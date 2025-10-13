@@ -12,7 +12,7 @@
     "keywords": "China, Brazil, B2B, import, export, BRICS, Canton Fair",
     "contact": {
       "email": "contato@chinabh.com.br",
-      "phone": "+55 21 96812-1455 (Debora Ladeira, COO)",
+      "phone": "+55 21 96630-8644 (Debora Ladeira, COO)",
       "address": "Belo Horizonte, Minas Gerais, Brazil"
     }
   },
@@ -28,6 +28,12 @@
         "label": { "zh": "关于我们", "en": "About Us" },
         "target": "#about",
         "style": "secondary"
+      },
+      {
+        "label": { "zh": "查看虚拟展会（预览）", "en": "See our Virtual Fair (Preview)" },
+        "target": "https://preview.chinabh.com.br",
+        "style": "secondary",
+        "external": true
       },
       {
         "label": { "zh": "联系我们", "en": "Contact Us" },
@@ -54,6 +60,11 @@
       "zh": "我们的流程",
       "en": "Our Process"
     },
+    "cta_tertiary": {
+      "zh": "查看虚拟展会（预览）",
+      "en": "See our Virtual Fair (Preview)"
+    },
+    "cta_tertiary_url": "https://preview.chinabh.com.br",
     "trust_badges": [
       // {
       //   "text": { "zh": "金砖合作伙伴", "en": "BRICS Partners" },
