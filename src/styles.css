@@ -193,17 +193,17 @@ a:hover {
 }
 
 .header-btn.btn-tertiary {
-    background: #FCE300;
+    background: #fbbf24;
     color: #1f2937;
-    border: 2px solid #FCE300;
+    border: 2px solid #fbbf24;
 }
 
 .header-btn.btn-tertiary:hover {
-    background: #D8B800;
-    border-color: #D8B800;
+    background: #d4a017;
+    border-color: #d4a017;
     color: #1f2937;
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(252, 227, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(230, 184, 0, 0.3);
 }
 
 /* ============================================
@@ -357,17 +357,17 @@ a:hover {
 }
 
 .btn-tertiary {
-    background: #FCE300;
-    border: 2px solid #FCE300;
+    background: #fbbf24;
+    border: 2px solid #fbbf24;
     color: #1f2937;
 }
 
 .btn-tertiary:hover {
-    background: #D8B800;
-    border-color: #D8B800;
+    background: #d4a017;
+    border-color: #d4a017;
     color: #1f2937;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(216, 184, 0, 0.4);
+    box-shadow: 0 4px 12px rgba(230, 184, 0, 0.4);
 }
 
 .btn-block {
