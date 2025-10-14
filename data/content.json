@@ -45,8 +45,8 @@
 
   "hero": {
     "title": {
-      "zh": "您通往巴西市场的桥梁",
-      "en": "Your Bridge to the Brazilian Market"
+      "zh": "不要错过2026年中国和巴西之间最大的商业项目",
+      "en": "Don't miss the biggest business project in Brazil-China relations in 2026"
     },
     "subtitle": {
       "zh": "通过信任、专业知识和战略合作伙伴关系，将中国企业与巴西的机遇联系起来。",
@@ -82,7 +82,7 @@
         "enabled": true
       }
     ],
-    "background_image": "/images/cbh_hero_banner.png",
+    "background_image": "/images/cbh_hero_banner.jpeg",
     "show_canton_banner": false,
     "canton_banner_text": {
       "zh": "🎯 广交会见！展位 15.2 H19-20",
