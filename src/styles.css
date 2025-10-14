@@ -356,9 +356,12 @@ a:hover {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    color: #ffd280;
-    -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    padding: var(--spacing-sm);
+    border-radius: 12px;
+    backdrop-filter: blur(2px);
 }
 
 .hero-cta {
