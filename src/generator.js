@@ -478,8 +478,8 @@ function generatePage(lang) {
 
         // Hero section - Always show both languages
         '{{HERO_TITLE_ZH}}': content.hero.title.zh,
-        '{{HERO_TITLE_EN_LINE1}}': "Don't miss the biggest business project",
-        '{{HERO_TITLE_EN_LINE2}}': "in Brazil-China relations in 2026.",
+        '{{HERO_TITLE_EN_LINE1}}': content.hero.title.en.line1,
+        '{{HERO_TITLE_EN_LINE2}}': content.hero.title.en.line2,
         '{{HERO_SUBTITLE}}': getText(content.hero.subtitle, lang),
         '{{HERO_BG_IMAGE}}': content.hero.background_image,
         '{{HERO_CTA_PRIMARY}}': getText(content.hero.cta_primary, lang),

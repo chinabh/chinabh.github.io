@@ -254,12 +254,13 @@ a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(220, 38, 38, 0.85), rgba(251, 191, 36, 0.75));
+    /* background: linear-gradient(135deg, rgba(220, 38, 38, 0.85), rgba(251, 191, 36, 0.75)); */
 }
 
 .hero-content {
     position: relative;
     z-index: 10;
+    padding-top: 2.5rem;
 }
 
 .hero-title-wrapper {
@@ -299,8 +300,18 @@ a:hover {
     display: block;
 }
 
-/* Mobile responsiveness */
+/* Mobile responsiveness for hero titles and background */
 @media (max-width: 768px) {
+    .hero {
+        min-height: 70vh;
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .hero-content {
+        padding-top: 4rem !important;
+    }
+
     .hero-title-wrapper {
         padding: 0 var(--spacing-sm);
     }
@@ -320,13 +331,34 @@ a:hover {
     }
 }
 
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+    .hero {
+        min-height: 60vh;
+    }
+
+    .hero-content {
+        padding-top: 3rem !important;
+    }
+
+    .hero-title-zh {
+        font-size: 1.25rem;
+    }
+
+    .hero-title-en {
+        font-size: 1rem;
+    }
+}
+
 .hero-subtitle {
     font-size: var(--font-size-xl);
     margin-bottom: var(--spacing-lg);
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    color: #ffd280;
+    -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.5);
 }
 
 .hero-cta {
@@ -751,20 +783,33 @@ a:hover {
         grid-template-columns: 1fr;
     }
 
+    /* Compact header on mobile */
+    .floating-header {
+        min-height: 50px;
+    }
+
     .header-container {
-        padding: 0.5rem var(--spacing-sm);
+        padding: 0.4rem var(--spacing-sm);
+        min-height: 50px;
     }
 
     .header-logo img {
-        height: 32px;
+        height: 30px;
     }
 
     .header-nav {
-        gap: var(--spacing-xs);
+        gap: 0.5rem;
     }
 
-    .header-btn {
-        padding: 0.4rem 0.8rem;
+    /* Hide "About Us" and "See Our Virtual Fair" buttons on mobile */
+    .header-btn.btn-secondary,
+    .header-btn.btn-tertiary {
+        display: none;
+    }
+
+    /* Keep "Contact Us" button visible but smaller */
+    .header-btn.btn-primary {
+        padding: 0.4rem 0.75rem;
         font-size: 0.75rem;
     }
 
@@ -776,6 +821,10 @@ a:hover {
     .process-steps {
         grid-template-columns: 1fr;
         gap: var(--spacing-sm);
+    }
+
+    body {
+        padding-top: 50px;
     }
 }
 
