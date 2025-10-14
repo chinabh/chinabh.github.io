@@ -46,11 +46,7 @@
   "hero": {
     "title": {
       "zh": "不要错过2026年中国和巴西之间最大的商业项目",
-      "en": {
-        "full": "Don't miss the biggest business project in Brazil-China relations in 2026",
-        "line1": "Don't miss the biggest business project",
-        "line2": "in Brazil-China relations in 2026"
-      }
+      "en": "Don't miss the biggest business project in Brazil-China relations in 2026"
     },
     "subtitle": {
       "zh": "通过信任、专业知识和战略合作伙伴关系，将中国企业与巴西的机遇联系起来。",

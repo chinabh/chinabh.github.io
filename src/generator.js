@@ -476,10 +476,8 @@ function generatePage(lang) {
         // Language switcher
         '{{LANGUAGE_OPTIONS}}': generateLanguageOptions(lang),
 
-        // Hero section - Always show both languages
-        '{{HERO_TITLE_ZH}}': content.hero.title.zh,
-        '{{HERO_TITLE_EN_LINE1}}': content.hero.title.en.line1,
-        '{{HERO_TITLE_EN_LINE2}}': content.hero.title.en.line2,
+        // Hero section
+        '{{HERO_TITLE}}': getText(content.hero.title, lang),
         '{{HERO_SUBTITLE}}': getText(content.hero.subtitle, lang),
         '{{HERO_BG_IMAGE}}': content.hero.background_image,
         '{{HERO_CTA_PRIMARY}}': getText(content.hero.cta_primary, lang),
