@@ -13,7 +13,32 @@
     "contact": {
       "email": "contato@chinabh.com.br",
       "phone": "+55 21 96630-8644 (Debora Ladeira, COO)",
+      "whatsapp": "+5521966308644",
+      "wechat": "+5521966308644",
+      "wechat_link": "https://u.wechat.com/kI2k6-dbT8g1qYRVshUg3I4?s=2",
       "address": "Belo Horizonte, Minas Gerais, Brazil"
+    },
+    "social": {
+      "wechat_qr": "/images/wechatqrcode.png"
+    }
+  },
+
+  "wechat_popup": {
+    "title": {
+      "zh": "扫码添加微信",
+      "en": "Scan to Add WeChat"
+    },
+    "subtitle": {
+      "zh": "使用微信扫描二维码添加我们",
+      "en": "Use WeChat to scan the QR code"
+    },
+    "wechat_id_label": {
+      "zh": "微信号",
+      "en": "WeChat ID"
+    },
+    "close_button": {
+      "zh": "关闭",
+      "en": "Close"
     }
   },
 

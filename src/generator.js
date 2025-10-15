@@ -301,7 +301,7 @@ function generateContactMethods(lang) {
             icon: '💬',
             label: 'WeChat',
             value: content.meta.contact.wechat,
-            link: null
+            link: content.meta.contact.wechat_link
         });
     }
 
@@ -339,11 +339,12 @@ function generateWeChatQR(lang) {
     if (!qrPath) return '';
 
     const wechatId = content.meta.contact?.wechat;
-    const wechatIdHtml = wechatId ? `<p><strong>WeChat ID:</strong> ${wechatId}</p>` : '';
+    const wechatIdLabel = getText(content.wechat_popup?.wechat_id_label || { zh: '微信号', en: 'WeChat ID' }, lang);
+    const wechatIdHtml = wechatId ? `<p><strong>${wechatIdLabel}:</strong> ${wechatId}</p>` : '';
 
     return `
         <div class="wechat-qr-container">
-            <h3>${getText({ pt: 'Escaneie para WeChat', zh: '扫码添加微信', en: 'Scan for WeChat' }, lang)}</h3>
+            <h3>${getText(content.wechat_popup?.title || { zh: '扫码添加微信', en: 'Scan for WeChat' }, lang)}</h3>
             <img src="${qrPath}" alt="WeChat QR Code" />
             ${wechatIdHtml}
         </div>
@@ -382,19 +383,66 @@ function generateHeaderButtons(lang) {
         .join('\n                ');
 }
 
-function generateWhatsAppButton() {
-    const whatsapp = content.meta.contact?.whatsapp;
-    if (!whatsapp) return '';
-
-    const whatsappNumber = whatsapp.replace(/\D/g, '');
+function generateWeChatButton() {
+    const wechat = content.meta.contact?.wechat;
+    if (!wechat) return '';
 
     return `
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/${whatsappNumber}" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+    <!-- WeChat Floating Button -->
+    <div class="wechat-float" onclick="openWeChatModal()" aria-label="Contact via WeChat">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="white">
-            <path d="M20.1 0C9.1 0 0.2 8.9 0.2 19.9c0 3.5 0.9 6.9 2.6 9.9L0 40l10.5-2.8c2.9 1.6 6.2 2.4 9.6 2.4C31.1 39.7 40 30.8 40 19.9S31.1 0 20.1 0zm11.5 28.2c-0.5 1.4-2.9 2.6-4 2.7c-1.1 0.1-1 0.8-6.4-1.3c-6.5-2.6-10.7-9.3-11-9.7c-0.3-0.4-2.6-3.5-2.6-6.6s1.7-4.7 2.3-5.3c0.6-0.6 1.3-0.8 1.7-0.8s0.9 0 1.2 0c0.4 0 0.9-0.2 1.4 1.1s1.7 4.1 1.8 4.4c0.1 0.3 0.2 0.6 0 1c-0.2 0.4-0.3 0.6-0.6 0.9s-0.6 0.7-0.9 1.1c-0.3 0.3-0.6 0.7-0.3 1.3c0.4 0.7 1.6 2.6 3.5 4.2c2.4 2 4.4 2.7 5 2.9c0.6 0.3 0.9 0.2 1.3-0.1c0.3-0.4 1.4-1.6 1.8-2.1c0.4-0.6 0.7-0.5 1.3-0.3c0.5 0.2 3.3 1.6 3.9 1.9c0.6 0.3 0.9 0.4 1 0.6C32.6 25.4 32.1 26.8 31.6 28.2z"/>
+            <path d="M15.5 8C8.6 8 3 12.9 3 19c0 3.5 1.9 6.6 4.9 8.7-.2 1.7-1.2 4.8-1.3 5.1-.1.4.1.4.3.3.3-.1 5.4-3.5 6.2-4.1.8.1 1.6.2 2.4.2 6.9 0 12.5-4.9 12.5-11S22.4 8 15.5 8zm-2.2 14.4c-.9 0-1.7-.7-1.7-1.6s.8-1.6 1.7-1.6 1.7.7 1.7 1.6-.8 1.6-1.7 1.6zm6.7 0c-.9 0-1.7-.7-1.7-1.6s.8-1.6 1.7-1.6 1.7.7 1.7 1.6-.8 1.6-1.7 1.6zM37 21.5c0-5.4-5-9.8-11.1-9.8-.3 0-.6 0-.9.1 1.1 1.3 1.8 2.9 1.8 4.7 0 5.3-5.1 9.6-11.3 9.6-.5 0-1-.1-1.5-.1-.1.3-.1.5-.1.8 0 5.4 5.6 9.7 12.5 9.7.7 0 1.4-.1 2.1-.2.7.5 5.1 3.5 5.4 3.5.2.1.3 0 .3-.3 0-.2-.9-3-1.1-4.4 2.6-1.8 4-4.5 4-7.6z"/>
         </svg>
-    </a>`;
+    </div>`;
+}
+
+function generateWeChatModal(lang) {
+    const qrPath = content.meta.social?.wechat_qr;
+    const wechatId = content.meta.contact?.wechat;
+
+    if (!qrPath && !wechatId) return '';
+
+    const title = getText(content.wechat_popup?.title || { zh: '扫码添加微信', en: 'Scan to Add WeChat' }, lang);
+    const subtitle = getText(content.wechat_popup?.subtitle || { zh: '使用微信扫描二维码添加我们', en: 'Use WeChat to scan the QR code' }, lang);
+    const wechatIdLabel = getText(content.wechat_popup?.wechat_id_label || { zh: '微信号', en: 'WeChat ID' }, lang);
+    const closeButton = getText(content.wechat_popup?.close_button || { zh: '关闭', en: 'Close' }, lang);
+
+    const qrImageHtml = qrPath ? `<img src="${qrPath}" alt="WeChat QR Code" class="wechat-modal-qr" />` : '';
+    const wechatIdHtml = wechatId ? `<p class="wechat-modal-id"><strong>${wechatIdLabel}:</strong> ${wechatId}</p>` : '';
+
+    return `
+    <!-- WeChat Modal -->
+    <div id="wechat-modal" class="wechat-modal" onclick="closeWeChatModal(event)">
+        <div class="wechat-modal-content" onclick="event.stopPropagation()">
+            <button class="wechat-modal-close" onclick="closeWeChatModal()">&times;</button>
+            <h2 class="wechat-modal-title">${title}</h2>
+            <p class="wechat-modal-subtitle">${subtitle}</p>
+            ${qrImageHtml}
+            ${wechatIdHtml}
+            <button class="btn btn-primary wechat-modal-close-btn" onclick="closeWeChatModal()">${closeButton}</button>
+        </div>
+    </div>
+
+    <script>
+        function openWeChatModal() {
+            document.getElementById('wechat-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeWeChatModal(event) {
+            if (!event || event.target.id === 'wechat-modal' || event.target.classList.contains('wechat-modal-close') || event.target.classList.contains('wechat-modal-close-btn')) {
+                document.getElementById('wechat-modal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeWeChatModal();
+            }
+        });
+    </script>`;
 }
 
 function generatePasswordProtection() {
@@ -524,8 +572,9 @@ function generatePage(lang) {
         '{{FOOTER_LINKS}}': generateFooterLinks(lang),
         '{{FOOTER_COPYRIGHT}}': getText(content.footer.copyright, lang),
 
-        // WhatsApp button (optional)
-        '{{WHATSAPP_BUTTON}}': generateWhatsAppButton(),
+        // WeChat button and modal (optional)
+        '{{WHATSAPP_BUTTON}}': generateWeChatButton(),
+        '{{WECHAT_MODAL}}': generateWeChatModal(lang),
 
         // Password protection (pre-launch)
         '{{PASSWORD_PROTECTION}}': generatePasswordProtection(),
